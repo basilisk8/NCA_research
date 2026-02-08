@@ -1,0 +1,16 @@
+ - Binary addition works
+ - it generalized enough so unlike a NN, it can get good accuracy on problems it has never seen before (local emmergance)
+ - can not directly go from grid A to grid n 
+ - can train a nn on the trained NCA to so sequential compution faster ( but the nn training is expensive too)
+ - nested tanh doesn't simplify
+ - meta nca also doesn't work. Meta NCA is just an NCA that somehow goes from step 0 to step n in 1 step, given starting input and weights. 
+ - polynomial approx for tanh doesn't work because errors compound over time
+ - ascii addition doesn't work because ascii is soo abstact that local rules can't understand current number, therefore cant compute (need some sort of global attention, but then that wouldn't really be an NCA)
+ - what if the weights weren't global, instead weights were inside the grid. so each cell has it's own weight. this could simulate a brain
+
+ - NCA-based hash function
+  - Delete rows each step = irreversible
+  - Tunable difficulty (more steps = slower)
+  - Needs: collision analysis, formal security proof
+  - Problem: tanh saturates, might allow collisions
+  - Status: interesting idea, needs cryptographer review
