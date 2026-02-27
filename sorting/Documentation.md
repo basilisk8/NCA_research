@@ -18,11 +18,18 @@ This experiment explores whether Neural Cellular Automata can learn to sort arra
 - **Activation**: tanh (bounds updates to [-1, 1])
 - **Normalization**: `(value - 128) / 64` → input range [-2, 2]
 
-### Final Architecture (5-Phase NCA)
+### 5-Phase NCA Architecture
 - **5 separate Conv networks** with independent weights
 - **32 channels** for expanded hidden state
 - **20 steps per phase** (100 total steps)
 - **Hungarian matching loss** to prevent interpolation
+
+### Gated residuals Architecture
+ - **1 conv network** learning sorting
+ = **Gated residuals** for activation function, to seperate value preservation from logic
+ - **64 channels** for compute, 32 channels for value and 32 for gates
+ - **60 steps** for info prop and value preservation
+ - **Hungarian matching loss** to prevent interpolation
 
 ## Files
 
@@ -52,11 +59,23 @@ This experiment explores whether Neural Cellular Automata can learn to sort arra
 - Classification approach (4 rank classes)
 - Outputs: `sort4_rank_weights.pth`
 
+**gated_residual_sort.py**
+ - Single NCA with gated residuals as activation function
+ - Grid; `(1, 64, 7, 1)`
+ - Training : 500k itterations
+ - Direct value output
+ - Output: `gated_residual_sort.pth`
+
 ### Testing Scripts
 
 **`test_4_elements_sort.py`**
 - Evaluates 5-phase sorting model
 - Tests: width-4 (trained), close values, width-5/6 (unseen)
+- Metrics: exact match and ±5 tolerance
+
+**gated_residual_test.py**
+- Evaluate the NCA weights
+- Tests: Width 7 (trained), close values, width-7/10 (unseen)
 - Metrics: exact match and ±5 tolerance
 
 ## Experiments & Results
@@ -144,7 +163,7 @@ True ranks: [1, 2, 0]
 
 ---
 
-### Experiment 8: 5-Phase NCA with Hungarian Loss (Core Result)
+### Experiment 8: 5-Phase NCA with Hungarian Loss
 **File**: `4_elements_sort.py`, `test_4_elements_sort.py`
 **Setup**: 
 - 5 independent Conv networks run sequentially
@@ -160,6 +179,7 @@ Iter 415000:
   Sort Loss: 0.0001 | Match Loss: 0.0304
 ```
 
+
 **Test Results**:
 | Test | Accuracy |
 |------|----------|
@@ -168,6 +188,23 @@ Iter 415000:
 | Close values (spacing 1-5) | 6/9 (67%) |
 | Width 5 (never trained) | 0/20 |
 | Width 6 (never trained) | 0/20 |
+
+
+### Experiment 9: Gated residuals with hungarian loss
+**File**: `gated_residual_test.py`, `gated_residual_test.py`
+**Setup**
+ - 64 channels, split into value and logic channels, with gate channel next to it's correcponding value channel
+ - Hungarian matching loss
+ - 60 steps
+ - 500k itterations
+
+**Results**: 99% accuracy on seen data, 100% on unseen data, 85% on unseen data of different width
+| Test | Accuracy |
+|------|----------|
+| Width 7 (exact match) | 7/100 |
+| Width 7 (±5 and ordered) | 99/100 |
+| Width 5 (never trained) | 20/20 |
+| Width 10 (never trained) | 17/20 |
 
 **Conclusion**: 
 - ✓ NCA learns value routing — order is correct, values are approximately correct

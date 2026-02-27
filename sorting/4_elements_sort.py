@@ -197,7 +197,7 @@ if __name__ == "__main__":
         values = [random.randint(0, 255) for _ in range(4)]
         log = (i % 5000 == 0)
         train_step(values, i, log=log)
-
+    
     # Save all 5 phase weights
     torch.save({
         'conv1': conv1.state_dict(),
