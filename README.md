@@ -48,9 +48,14 @@ python test_logic_gates.py
 
 ### Sorting
 ``` bash
-cd computational_NCA/sorting
+cd sorting
 python 4_elements_sort.py
 python test_4_elements_sort.py
+```
+``` bash
+cd sorting
+python gated_residual_sort.py
+python gated_residual_test.py
 ```
 
 ## Files in each folder
@@ -95,6 +100,8 @@ python test_4_elements_sort.py
  - `4_elements_sort.py` - 5-phase NCA with Hungarian matching loss
  - `4_elements_rank.py` - Cross-entropy ranking approach
  - `test_4_elements_sort.py` - Evaluation script with ±5 tolerance metrics
+ - `gated_residual_sort.py` - Train NCA to sort using gated residual activation
+ - `gated_residual_test.py` - Test gated weights on seen and unseen data
 
 ## Key findings
 
@@ -111,3 +118,4 @@ python test_4_elements_sort.py
 - Sorting via value routing works (60% on width 4) but precision limited by tanh
 - Neither sorting approach generalizes to unseen widths
 - Multi-phase NCA enables sequential operations single NCA cannot do
+- Activation function matters depending on the task 
