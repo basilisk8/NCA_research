@@ -16,6 +16,7 @@ Each folder = one experiment/direction.
 | `computational_NCA/heat_diffusion` | Train an NCA to figure out heat diffusion rules when only given input and target | Works and generalizes |
 | `computationa;_NCA_/heat_diffusion_generalize_limits` | Train an NCA on 1 porward pass and test generalization across time and space | Generalized | 
 | `sorting` | NCA learns to sort arrays via value routing and ranking | 60% routing, 95% ranking, 0% generalization , 100% gated routing 85% gated routing generalization|
+| `light_simulation/` | NCA learns Maxwell's equations (electromagnetic wave propagation); rediscovers FDTD stencils and generalizes across time & space | Works |
 
 ## Quick start
 ### Binary addition
@@ -72,6 +73,13 @@ python gated_residual_sort.py
 python gated_residual_test.py
 ```
 
+### Light simulation
+```bash
+cd light_simulation
+python train_maxwell.py
+python test_maxwell_weights.py
+```
+
 ## Files in each folder
 ### Binary_addition
 - `memorize_addition_nca.py` - code to test if nca can 'remember'
@@ -121,6 +129,12 @@ python gated_residual_test.py
  - `test_4_elements_sort.py` - Evaluation script with ±5 tolerance metrics
  - `gated_residual_sort.py` - Train NCA to sort using gated residual activation
  - `gated_residual_test.py` - Test gated weights on seen and unseen data
+
+### light_simulation
+- `Documentation.md` - Experiment overview, architecture, training details, results, and key findings (Maxwell/FDTD rediscovery)
+- `train_maxwell.py` - Training script for the Maxwell NCA (3 channels: Ez, Hx, Hy)
+- `test_maxwell_weights.py` - Tests time and space generalization; compares NCA to FDTD ground truth
+- `physics_light_sim.pth` - Example trained weights / checkpoint
 
 ## Key findings
 
