@@ -17,6 +17,7 @@ Each folder = one experiment/direction.
 | `computationa;_NCA_/heat_diffusion_generalize_limits` | Train an NCA on 1 porward pass and test generalization across time and space | Generalized | 
 | `sorting` | NCA learns to sort arrays via value routing and ranking | 60% routing, 95% ranking, 0% generalization , 100% gated routing 85% gated routing generalization|
 | `light_simulation/` | NCA learns Maxwell's equations (electromagnetic wave propagation); rediscovers FDTD stencils and generalizes across time & space | Works |
+| `game_of_life/` | NCA learns Game of Life rules; tests perfect generalization across space and time | Works |
 
 ## Quick start
 ### Binary addition
@@ -80,6 +81,13 @@ python train_maxwell.py
 python test_maxwell_weights.py
 ```
 
+### Game of Life
+```bash
+cd game_of_life
+python train_GoL.py
+python test_GoL.py
+```
+
 ## Files in each folder
 ### Binary_addition
 - `memorize_addition_nca.py` - code to test if nca can 'remember'
@@ -136,6 +144,12 @@ python test_maxwell_weights.py
 - `test_maxwell_weights.py` - Tests time and space generalization; compares NCA to FDTD ground truth
 - `physics_light_sim.pth` - Example trained weights / checkpoint
 
+### game_of_life
+- `Documentation.md` - Experiment overview, architecture, training details, results, and key findings on perfect generalization of discrete nonlinear rules
+- `train_GoL.py` - Training script for Game of Life NCA (16 hidden channels, binary state)
+- `test_GoL.py` - Tests spatial generalization (16x to 256x) and temporal generalization (up to 100 steps autoregressive)
+- `raw_notes.md` - My raw notes during and after the experiment, including training logs and detailed generalization results
+
 ## Key findings
 
 - Binary addition generalizes (train 0-5, test 0-7 → 84%)
@@ -153,3 +167,4 @@ python test_maxwell_weights.py
 - Multi-phase NCA enables sequential operations single NCA cannot do
 - Activation function matters depending on the task 
 - NCA does better with minimal parameters in physics simulations
+- NCA learns discrete nonlinear rules (Game of Life) with perfect generalization across space and time, despite cascading error sensitivity
