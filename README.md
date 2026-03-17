@@ -18,7 +18,7 @@ Each folder = one experiment/direction.
 | `sorting` | NCA learns to sort arrays via value routing and ranking | 60% routing, 95% ranking, 0% generalization , 100% gated routing 85% gated routing generalization|
 | `light_simulation/` | NCA learns Maxwell's equations (electromagnetic wave propagation); rediscovers FDTD stencils and generalizes across time & space | Works |
 | `game_of_life/` | NCA learns Game of Life rules; tests perfect generalization across space and time | Works |
-
+| `multi_shape_morphogenesis/5_shapes/` | Train a single NCA to grow 5 different binary shapes from learned seed embeddings; compares Mordvintsev architecture to stacked conv architecture | Works, stacked conv is perfect |
 ## Quick start
 ### Binary addition
 ```bash
@@ -88,6 +88,18 @@ python train_GoL.py
 python test_GoL.py
 ```
 
+### Multi-shape morphogenesis
+```bash
+cd multi_shape_morphogenesis/5_shapes
+python multi_shape_nca.py
+python test_multi_shape.py
+```
+```bash
+cd multi_shape_morphogenesis/5_shapes
+python stacked_conv_nca.py
+python test_stacked_conv.py
+```
+
 ## Files in each folder
 ### Binary_addition
 - `memorize_addition_nca.py` - code to test if nca can 'remember'
@@ -150,6 +162,12 @@ python test_GoL.py
 - `test_GoL.py` - Tests spatial generalization (16x to 256x) and temporal generalization (up to 100 steps autoregressive)
 - `raw_notes.md` - My raw notes during and after the experiment, including training logs and detailed generalization results
 
+### multi_shape_morphogenesis/5_shapes
+- `Documentation.md` - Experiment overview, architecture details for both Mordvintsev and stacked conv approaches, training details, results, and key findings on multi-shape morphogenesis
+- `multi_shape_nca.py` - Training script for Mordvintsev architecture (Sobel + 1x1 conv)
+- `test_multi_shape.py` - Tests the trained Mordvintsev weights on all 5 shapes and reports pixel accuracy; generates comparison visualization
+- `stacked_conv_nca.py` - Training script for stacked conv architecture (Conv3x3 + Conv1x1 + Conv1x1)
+- `test_stacked_conv.py` - Tests the trained stacked conv weights on all 5 shapes and reports pixel accuracy; generates comparison visualization
 ## Key findings
 
 - Binary addition generalizes (train 0-5, test 0-7 → 84%)
