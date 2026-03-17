@@ -11,9 +11,7 @@ this repo.
 
 ## Key Question
 
-**Can one NCA local rule, conditioned on a learned seed embedding, grow multiple
-distinct shapes? And can a general-purpose stacked conv architecture match a
-specialized morphogenesis architecture on this task?**
+**Can one NCA local rule, conditioned on a learned seed embedding, grow multipledistinct shapes? And can a general-purposestacked conv architecture match specialized morphogenesis architecture on this task?**
 
 ## Architecture
 
