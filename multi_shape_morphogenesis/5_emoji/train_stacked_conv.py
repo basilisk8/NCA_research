@@ -113,8 +113,7 @@ def step(grid):
 
 def lossFunc(finalGrid, target):
     """
-    BCE loss between visible output channel and target shape.
-    BCEWithLogitsLoss applies sigmoid internally.
+    MSE loss between final grid's channel 0 and target shape. Measures how well the NCA grew the desired shape.
 
     Args:
         finalGrid: NCA state after growth (1, 25, 40, 40)
