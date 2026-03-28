@@ -19,6 +19,8 @@ Each folder = one experiment/direction.
 | `light_simulation/` | NCA learns Maxwell's equations (electromagnetic wave propagation); rediscovers FDTD stencils and generalizes across time & space | Works |
 | `game_of_life/` | NCA learns Game of Life rules; tests perfect generalization across space and time | Works |
 | `multi_shape_morphogenesis/5_shapes/` | Train a single NCA to grow 5 different binary shapes from learned seed embeddings; compares Mordvintsev architecture to stacked conv architecture | Works, stacked conv is perfect |
+| `multi_shape_morphogenesis/5_emoji/` | Train a single NCA to grow 5 different RGB emojis from learned seed embeddings; tests if same architecture can handle increased complexity of natural color images | Works, but not perfectly |
+
 ## Quick start
 ### Binary addition
 ```bash
@@ -89,6 +91,7 @@ python test_GoL.py
 ```
 
 ### Multi-shape morphogenesis
+#### 5 shapes
 ```bash
 cd multi_shape_morphogenesis/5_shapes
 python multi_shape_nca.py
@@ -97,6 +100,13 @@ python test_multi_shape.py
 ```bash
 cd multi_shape_morphogenesis/5_shapes
 python stacked_conv_nca.py
+python test_stacked_conv.py
+```
+
+#### 5 emojis
+```bash
+cd multi_shape_morphogenesis/5_emoji
+python train_stacked_conv.py
 python test_stacked_conv.py
 ```
 
@@ -168,6 +178,12 @@ python test_stacked_conv.py
 - `test_multi_shape.py` - Tests the trained Mordvintsev weights on all 5 shapes and reports pixel accuracy; generates comparison visualization
 - `stacked_conv_nca.py` - Training script for stacked conv architecture (Conv3x3 + Conv1x1 + Conv1x1)
 - `test_stacked_conv.py` - Tests the trained stacked conv weights on all 5 shapes and reports pixel accuracy; generates comparison visualization
+
+### multi_shape_morphogenesis/5_emoji
+- `Documentation.md` - Experiment overview, architecture details, training details, results, and key findings on multi-shape morphogenesis extended to RGB emojis, including the challenges of continuous color values and fine visual details
+- `train_stacked_conv.py` - Training script for stacked conv architecture adapted for RGB emoji generation
+- `test_stacked_conv.py` - Tests the trained stacked conv weights on all 5 emojis, reports MSE loss and pixel accuracy, and generates comparison visualization
+- `emoji_targets.pt` - Target RGB emoji images used for training
 ## Key findings
 
 - Binary addition generalizes (train 0-5, test 0-7 → 84%)
