@@ -20,7 +20,7 @@ Each folder = one experiment/direction.
 | `game_of_life/` | NCA learns Game of Life rules; tests perfect generalization across space and time | Works |
 | `multi_shape_morphogenesis/5_shapes/` | Train a single NCA to grow 5 different binary shapes from learned seed embeddings; compares Mordvintsev architecture to stacked conv architecture | Works, stacked conv is perfect |
 | `multi_shape_morphogenesis/5_emoji/` | Train a single NCA to grow 5 different RGB emojis from learned seed embeddings; tests if same architecture can handle increased complexity of natural color images | Works, but not perfectly |
-
+| `multi_shape_morphogenesis/25_emoji_5_classes/` | Train a NCA to grow 25 emoji from 5 classes and 5 varients per class; tests if NCA can learn to grow many complex shapes with minimal parameters | Works |
 ## Quick start
 ### Binary addition
 ```bash
@@ -110,6 +110,13 @@ python train_stacked_conv.py
 python test_stacked_conv.py
 ```
 
+#### 25 emojis, 5 classes
+```bash
+cd multi_shape_morphogenesis/25_emoji_5_classes
+python train_stacked_conv.py
+python test_stacked_conv.py
+```
+
 ## Files in each folder
 ### Binary_addition
 - `memorize_addition_nca.py` - code to test if nca can 'remember'
@@ -184,6 +191,13 @@ python test_stacked_conv.py
 - `train_stacked_conv.py` - Training script for stacked conv architecture adapted for RGB emoji generation
 - `test_stacked_conv.py` - Tests the trained stacked conv weights on all 5 emojis, reports MSE loss and pixel accuracy, and generates comparison visualization
 - `emoji_targets.pt` - Target RGB emoji images used for training
+
+### multi_shape_morphogenesis/25_emoji_5_classes
+- `Documentation.md` - Experiment overview, architecture details, training details, results, and key findings on scaling multi-shape morphogenesis to 25 RGB emojis across 5 classes, demonstrating the NCA's capacity for learning many complex shapes with minimal parameters
+- `train_stacked_conv.py` - Training script for stacked conv architecture adapted for 25 RGB emoji generation
+- `test_stacked_conv.py` - Tests the trained stacked conv weights on all 25 emojis, reports MSE loss and pixel accuracy, and generates comparison visualization
+- `emoji_targets.pt` - Target RGB emoji images used for training
+
 ## Key findings
 
 - Binary addition generalizes (train 0-5, test 0-7 → 84%)
