@@ -5,7 +5,7 @@ This experiment explores whether an NCA can learn the local rules of heat diffus
 and generalize through space and time. Instead of hand-coding the heat
 equation, the NCA discovers the underlying physics purely from data. By training on
 1 step heat equation with minimal channels and parameters, NCA can learn the equation
-that generalizaes to bigger grids and more steps.
+that generalizes to bigger grids and more steps.
 
 ## Key Question
 
@@ -17,7 +17,7 @@ that generalizaes to bigger grids and more steps.
   - Channel 0: Temperature field (input state, modified during evolution)
 - **Convolution**: 2D Conv (1→1 channels, 1×3 kernel, padding=1)
 - **Activation**: None
-- **Steps**: 1 forwars pass every 1 physics frame
+- **Steps**: 1 forward pass every 1 physics frame
 - **Loss**: MSELoss (mean squared error between predicted and target temperature)
 - **Target Generation**: Ground truth computed using discrete heat equation:
   `T_new[i][j] = T[i][j] + α * (T[i+1][j] + T[i-1][j] + T[i][j+1] + T[i][j-1] - 4*T[i][j])`
@@ -28,7 +28,7 @@ that generalizaes to bigger grids and more steps.
 
 **`variable_steps.py`**
 ***Failed***
-- Tried the same logic of the original heat diffusion model, except iwth variable steps
+- Tried the same logic of the original heat diffusion model, except with variable steps
 - Generates random initial temperature fields as training data
 - Target is calculated by applying discrete heat equation for variable steps
 - Training : grid sizes: 8-16, steps: 5, 20
@@ -36,7 +36,7 @@ that generalizaes to bigger grids and more steps.
 **single_step_nca.py**
 - Minimalistic architecture with 1 channel
 - 1 forward pass, and compared to 1 physics frame
-- Also test generalzation to 16x width and 1000x steps with perfect accuracy
+- Also test generalization to 16x width and 1000x steps with perfect accuracy
 
 ### Testing Scripts
 

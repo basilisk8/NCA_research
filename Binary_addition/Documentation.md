@@ -38,13 +38,13 @@ This experiment explores whether Neural Cellular Automata (NCAs) can **learn** b
 
 ### Testing Scripts
 
-**`test_generalization.py`**
+**`generalize_test.py`**
 - Tests if NCA generalizes beyond training data
 - Requires: Weights trained on 0-5
 - Tests: 0-5 (seen) vs 6-7 (unseen)
 - **Core experiment for proving learning vs memorization**
 
-**`test_2digit_addition.py`**
+**`2_digit_generalization.py`**
 - Tests if learned patterns transfer to wider grids
 - Uses weights from 4-bit training on 8-bit problems
 - Tests: Random 2-digit additions (10-99)

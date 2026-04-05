@@ -1,7 +1,7 @@
 # Testing Generalization with big numbers
 
 ## Overview
-This experiment explores whether locally learnt addition rules for numbers from 0 - 99 provides accurate responses when tested with numbers from 100 - 999. This experiment tried to do this by eliminating most factors that affect output expect training data. By training on small numbers and applying same weights to completely unseen data we can see if NCA's local rule generalize beyond training data
+This experiment explores whether locally learnt addition rules for numbers from 0 - 99 provides accurate responses when tested with numbers from 100 - 999. This experiment tried to do this by eliminating most factors that affect output except training data. By training on small numbers and applying same weights to completely unseen data we can see if NCA's local rule generalize beyond training data
 
 ## Key Question
 

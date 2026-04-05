@@ -19,8 +19,8 @@ This experiment tests if training time for a grid 11 wide and 30 wide takes abou
 ## Experiments & Results
 
 ### Experiment 1: Finding time difference
-**Setup**: Train an NCA that ius 11 wide  and train an NCA 30 wide. time the training time.
+**Setup**: Train an NCA that is 11 wide and train an NCA 30 wide. time the training time.
 **Result**: ~117 seconds to train NCA 11 wide and ~110 seconds for training an NCA 30 wide
 **Conclusion**: NCA cell updates though conv is Parallel and making the grid wider in a reasonable size doesn't change training time
 
-**Conclusion**: ✓ The NCA scales efficiently with bigger grids doe to conv natural parallel structure in NCA
+**Conclusion**: ✓ The NCA scales efficiently with bigger grids due to conv natural parallel structure in NCA

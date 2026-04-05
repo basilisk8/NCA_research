@@ -31,7 +31,7 @@ This experiment tries to see if NCA's can be trained with Hebbian learning of ne
 **Result**: Failed, with reward at a constant -1 
 **Conclusion**: Hebbian learning has gaps that the experiment highlights and it's not computationally cheap to run either
 **Reasoning**: These are the reasons I think the experiment failed 
-    - Per cell weights is unstable artichture to modify because per cell weights add too many parameters
-    - The experiment realied on the assumption that NCA's local structure withh fill in the knowledge gaps we have about hebbian learing
+    - Per cell weights is unstable architecture to modify because per cell weights add too many parameters
+    - The experiment relied on the assumption that NCA's local structure will fill in the knowledge gaps we have about hebbian learning
     - Computationally it is more expensive to compute per cell weights because they add a lot more parameters
 **Conclusion**: The NCA **failed to learn** using hebbian learning

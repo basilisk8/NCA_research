@@ -5,10 +5,10 @@ Pre coding
  - can NCA's generalize 3 digit addition, when only taught on 2 digit addition? (Main question)
  - can carry prop work on training data never before seen?
 
-Architechure 
+Architecture 
  - 16 channels
  - 2 width, 11 length
- - train on 100k itterations of random numbers added from 0 - 99
+ - train on 100k iterations of random numbers added from 0 - 99
  - testing if the weights are accurate for 1000 random 3 digit addition problems
 
 Post Coding

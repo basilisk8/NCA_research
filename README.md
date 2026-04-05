@@ -14,13 +14,13 @@ Each folder = one experiment/direction.
 | `time_grid_scaling/` | Testing training time when grid size increases | Same training time |
 | `computational_NCA/logic_gates` | NCA learns logic gates then generalizes to 16x training data | Trained and 100% accuracy on unseen data |
 | `computational_NCA/heat_diffusion` | Train an NCA to figure out heat diffusion rules when only given input and target | Works and generalizes |
-| `computationa;_NCA_/heat_diffusion_generalize_limits` | Train an NCA on 1 porward pass and test generalization across time and space | Generalized | 
+| `computational_NCA/heat_diffusion_generalize_limits` | Train an NCA on 1 forward pass and test generalization across time and space | Generalized | 
 | `sorting` | NCA learns to sort arrays via value routing and ranking | 60% routing, 95% ranking, 0% generalization , 100% gated routing 85% gated routing generalization|
 | `light_simulation/` | NCA learns Maxwell's equations (electromagnetic wave propagation); rediscovers FDTD stencils and generalizes across time & space | Works |
 | `game_of_life/` | NCA learns Game of Life rules; tests perfect generalization across space and time | Works |
 | `multi_shape_morphogenesis/5_shapes/` | Train a single NCA to grow 5 different binary shapes from learned seed embeddings; compares Mordvintsev architecture to stacked conv architecture | Works, stacked conv is perfect |
 | `multi_shape_morphogenesis/5_emoji/` | Train a single NCA to grow 5 different RGB emojis from learned seed embeddings; tests if same architecture can handle increased complexity of natural color images | Works, but not perfectly |
-| `multi_shape_morphogenesis/25_emoji_5_classes/` | Train a NCA to grow 25 emoji from 5 classes and 5 varients per class; tests if NCA can learn to grow many complex shapes with minimal parameters | Works |
+| `multi_shape_morphogenesis/25_emoji_5_classes/` | Train a NCA to grow 25 emoji from 5 classes and 5 variants per class; tests if NCA can learn to grow many complex shapes with minimal parameters | Works |
 ## Quick start
 ### Binary addition
 ```bash
@@ -119,26 +119,26 @@ python test_stacked_conv.py
 
 ## Files in each folder
 ### Binary_addition
-- `memorize_addition_nca.py` - code to test if nca can 'remember'
+- `memorization_addition_nca.py` - code to test if nca can 'remember'
 - `train_2d_addition_nca.py` - training code to train nca 1 digit addition in a 16 channel, 2D array
 - `testing_weights/generalize_test.py` - Check how well nca generalized on problems seen in training, and never before seen problems
 - `2_digit_generalization.py` - testing code to check accuracy of nca trained on 1 digit number addition on 2 digit number addition
-- `Documentation.md` - domumentation of everything I tried, results and conclusion
+- `Documentation.md` - documentation of everything I tried, results and conclusion
 
 ### generalization_limits
 - `2_digit_training.py` - code to train nca to learn addition from numbers 0 - 99
-- `testing_generalized_weights/3_digit_generalize.py` - Check how accurate NCA learned on 2 digit addition is when tested on 3 digit numbers
+- `testing_generalized_weights/3_digit_generalize_test.py` - Check how accurate NCA learned on 2 digit addition is when tested on 3 digit numbers
 - `raw_notes.md` - My raw notes before, during and after the experiment
 - `Documentation.md` - cleaned up raw notes with details on experiments and results
 
 ### hebbian_learning_nca
- - `hebbian_learing_nca.py` - code that tried to train NCA on hebbian learning
+ - `hebbian_learning_nca.py` - code that tried to train NCA on hebbian learning
  - `Documentation.md` - Documentation of experiment and my thoughts on why it failed
  - `raw_notes.md` - My raw notes describing my thinking during and after experiment
  
 ### time_grid_scaling
  - `raw_notes.md` - Notes and results of experiment
- - `Documentation.md` - Documentation of experiment and what it reveals about NCA's parallel stucture
+ - `Documentation.md` - Documentation of experiment and what it reveals about NCA's parallel structure
  - `grid_scaling.py` - code that times time to train NCA with different grid sizes
 
 ### logic_gates
@@ -153,14 +153,14 @@ python test_stacked_conv.py
 
 ### heat_diffusion_generalize_limits
  - `Documentation.md` - Experiment and results with future implications in physics simulation
- - `variable_steps.py` - Failed architecure to generalize across time
- - `single_step_NCA` - Train NCA on 1 forward pass and test generalization across time and space
+ - `variable_steps.py` - Failed architecture to generalize across time
+ - `single_step_NCA.py` - Train NCA on 1 forward pass and test generalization across time and space
 
 ### sorting
  - `Documentation.md` - 8 experiments, failure taxonomy, and core findings on NCA routing limits
  - `raw_notes.md` - My thinking on why each experiment fails
- - `2_element_swap.py` - Basic 2-element sort with preservation loss
- - `2_element_sort_extended.py` - 2-element with expanded capacity (32 channels, 500k iterations)
+ - `swap_and_preserve.py` - Basic 2-element sort with preservation loss
+ - `train_compare_and_swap.py` - 2-element with expanded capacity (32 channels, 500k iterations)
  - `4_elements_sort.py` - 5-phase NCA with Hungarian matching loss
  - `4_elements_rank.py` - Cross-entropy ranking approach
  - `test_4_elements_sort.py` - Evaluation script with ±5 tolerance metrics
@@ -194,8 +194,8 @@ python test_stacked_conv.py
 
 ### multi_shape_morphogenesis/25_emoji_5_classes
 - `Documentation.md` - Experiment overview, architecture details, training details, results, and key findings on scaling multi-shape morphogenesis to 25 RGB emojis across 5 classes, demonstrating the NCA's capacity for learning many complex shapes with minimal parameters
-- `train_stacked_conv.py` - Training script for stacked conv architecture adapted for 25 RGB emoji generation
-- `test_stacked_conv.py` - Tests the trained stacked conv weights on all 25 emojis, reports MSE loss and pixel accuracy, and generates comparison visualization
+- `train_25_emoji.py` - Training script for stacked conv architecture adapted for 25 RGB emoji generation
+- `test_25_emoji.py` - Tests the trained stacked conv weights on all 25 emojis, reports MSE loss and pixel accuracy, and generates comparison visualization
 - `emoji_targets.pt` - Target RGB emoji images used for training
 
 ## Key findings

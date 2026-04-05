@@ -1,6 +1,6 @@
 Pre experiment
- - Is sequencial part the only non parrelal part in NCA or is cell update also sequential?
- - If cell update is parrelal then as long as the grid size scales reasonable within the PGU limits, the time taken should not change
+ - Is sequential part the only non parallel part in NCA or is cell update also sequential?
+ - If cell update is parallel then as long as the grid size scales reasonable within the GPU limits, the time taken should not change
  - Test training time to train a model that is 11 wide vs 30 wide
 
 result :
@@ -48,7 +48,7 @@ Logit range: [-11.17, 6.15]
 Iteration 8000 | 66+63=129 | Loss: 0.001713
 Logit range: [-11.65, 7.00]
 Iteration 9000 | 96+56=152 | Loss: 0.000470
-TIme taken for gird size 30 is 104.1686692237854
+Time taken for grid size 30 is 104.1686692237854
 
 Conclusion 
  - loss is about the same

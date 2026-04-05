@@ -10,7 +10,7 @@ We can try what diffusion models do. 1 class embedding and 1 variant embedding. 
 
 Variant embedding got a loss of 0.001, not very good and the grown output was blurry. 
 
-When I remove stoastic mask and give the NCA enough steps, it gave better results, but comparing the results I got at 200k and 300k, the 200k itteration weights was somehow better
+When I remove stochastic mask and give the NCA enough steps, it gave better results, but comparing the results I got at 200k and 300k, the 200k iteration weights was somehow better
 
 loss 
 18.5s	10	Iter 0 | C3V0 | loss: 0.124105

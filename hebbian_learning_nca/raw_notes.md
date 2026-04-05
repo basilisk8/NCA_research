@@ -5,5 +5,5 @@
 
  - experiment failed
  - my guess is because firstly per cell weight is an unstable architecture
- - second reason it because convulution has 1 weights for everything, so less parameters than every cell having it's own weight, so computationally convulution is faster
- - third reason hebbian learning is not the only learning algorithm the brain uses, so we can't train a NCA liek the brain learns without knowing exactly how the brain learns
+ - second reason is because convolution has 1 weights for everything, so less parameters than every cell having it's own weight, so computationally convolution is faster
+ - third reason hebbian learning is not the only learning algorithm the brain uses, so we can't train a NCA like the brain learns without knowing exactly how the brain learns

@@ -26,7 +26,7 @@ This experiment explores whether Neural Cellular Automata can learn to sort arra
 
 ### Gated residuals Architecture
  - **1 conv network** learning sorting
- = **Gated residuals** for activation function, to seperate value preservation from logic
+ - **Gated residuals** for activation function, to separate value preservation from logic
  - **64 channels** for compute, 32 channels for value and 32 for gates
  - **60 steps** for info prop and value preservation
  - **Hungarian matching loss** to prevent interpolation
@@ -62,7 +62,7 @@ This experiment explores whether Neural Cellular Automata can learn to sort arra
 **gated_residual_sort.py**
  - Single NCA with gated residuals as activation function
  - Grid; `(1, 64, 7, 1)`
- - Training : 500k itterations
+ - Training : 500k iterations
  - Direct value output
  - Output: `gated_residual_sort.pth`
 
@@ -193,10 +193,10 @@ Iter 415000:
 ### Experiment 9: Gated residuals with hungarian loss
 **File**: `gated_residual_test.py`, `gated_residual_test.py`
 **Setup**
- - 64 channels, split into value and logic channels, with gate channel next to it's correcponding value channel
+ - 64 channels, split into value and logic channels, with gate channel next to its corresponding value channel
  - Hungarian matching loss
  - 60 steps
- - 500k itterations
+ - 500k iterations
 
 **Results**: 99% accuracy on seen data, 100% on unseen data, 85% on unseen data of different width
 | Test | Accuracy |

@@ -40,7 +40,7 @@ Iter 420000 | [98,151]→[98,152] expected [98,151] | ✗ | Loss: 0.000006
 Iter 430000 | [145,251]→[146,251] expected [145,251] | ✗ | Loss: 0.000003
 Iter 440000 | [213,109]→[110,212] expected [109,213] | ✗ | Loss: 0.000012
 
-proves NCA can actually sort 2 numbers, just takes about 500k itterations and 32 channels with 30 steps. this training is painfully slow, can this be done faster than 2 hours? The NCA did learn sorting though, but not always point on because of tanh's continues domain it is off by 0.5, 
+proves NCA can actually sort 2 numbers, just takes about 500k iterations and 32 channels with 30 steps. this training is painfully slow, can this be done faster than 2 hours? The NCA did learn sorting though, but not always point on because of tanh's continuous domain it is off by 0.5, 
 
 raw outputs
 INPUT           | NCA OUTPUT (Raw)     | ROUNDED         | EXPECTED        | LOGIC
@@ -65,30 +65,30 @@ INPUT           | NCA OUTPUT (Raw)     | ROUNDED         | EXPECTED        | LOG
 [181, 235]      | [181.9, 235.0]      | [182, 235]     | [181, 235]     | ✓ (Off by 1)
 [200, 215]      | [202.1, 213.5]      | [202, 213]     | [200, 215]     | ✓ (Off by 4)
 [74, 232]       | [74.1, 232.6]       | [74, 233]      | [74, 232]      | ✓ (Off by 1)
-is it possible to be more presise?
+is it possible to be more precise?
 
 NCA absolutely fails at generalization of this
 probably because it has never seen how to compute more than 3 digits because it never encountered 'middle' digit in trainings
 can reLU do this better? maybe not because reLU can't subtract.
 
-The train_compare_and_swap architecure doesn't scale beyond 2 numbers because mathematically interpolation is the lowest efforst ofr lowest loss possible
+The train_compare_and_swap architecture doesn't scale beyond 2 numbers because mathematically interpolation is the lowest effort for lowest loss possible
 
-what if we encode 1 binary digit in 1 channel, and try to compute with that architecure
-the architecture will be unstable though because even NCA's locaility has limits on info propogation, especially since information is spaced out in channels
+what if we encode 1 binary digit in 1 channel, and try to compute with that architecture
+the architecture will be unstable though because even NCA's locality has limits on info propagation, especially since information is spaced out in channels
 
-what if we just punish the NCA through loss that interpolation is actually not the methematically lowest loss for lowest effort
+what if we just punish the NCA through loss that interpolation is actually not the mathematically lowest loss for lowest effort
 that didn't work, probably because gradient descent found the local minimum to be the identity function, and even adaptive loss doesn't fix that
 
 The core problem here is that preservation loss and sorting loss contradict each other, to sort 4 elements the NCA has to try combinations of sorting, and trying to sort heavily punishes because sorting loss is high and preservation loss is high. So we need to reward trying to swap
 
-What if we use cross entrophy. the cells have to 'rank' themself instead of having to preserve and swap and compare. so input of [3 7 0 1] expects the output [3 4 1 2]
-This works, but the model get's values that are close always wrong. probably because the division by 255 looses some accuracy as now numbers that are close are like 0.01 away because The division
-This architecture can not generalize though. like cross entrophy needs 1 output channel for every tpye of classification, so 4 element needs 4 channels but 8 elements needs 8 channels
+What if we use cross entropy. the cells have to 'rank' themself instead of having to preserve and swap and compare. so input of [3 7 0 1] expects the output [3 4 1 2]
+This works, but the model gets values that are close always wrong. probably because the division by 255 loses some accuracy as now numbers that are close are like 0.01 away because The division
+This architecture can not generalize though. like cross entropy needs 1 output channel for every type of classification, so 4 element needs 4 channels but 8 elements needs 8 channels
 
 what if the NCA outputs the ranks in 1 channel, like input of [3 7 0 1] gives output of [3 4 1 2] in 1 channel. so training on variable grid size should force NCA to generalize to grid sizes never seen before. 
 This failed badly. because the difference in decimal point for numbers close is too close, ranking fails in a typical MSE loss
 
-NCA axoim says NCA's can find rules for local functions. it did find the rule for the local function with corss entrophy. now in some cases like heat diffusion, this can scale and generalize, but that's a byproduct of the axoim and not guarenteed. so NCA can find the local rule for sorting. 
+NCA axiom says NCA's can find rules for local functions. it did find the rule for the local function with cross entropy. now in some cases like heat diffusion, this can scale and generalize, but that's a byproduct of the axiom and not guaranteed. so NCA can find the local rule for sorting. 
 
 But bubble sort is local and it works, so there is no reason for this to not work. hungarian loss could potentially work better than MSE preservation loss, but the core issue is still that 1 NCA might not be able to compare, swap, and preserve values across multiple steps, so maybe we just need to add more NCA's, similar to how 1 NN layer couldn't do XOR, but you just add more layers and now it can.
 
@@ -276,11 +276,11 @@ TEST 3: Generalization (NEVER TRAINED)
     FAIL: [94, 135, 150, 70, 169, 192] → [16, 94, 135, 173, 182, 204] expected [70, 94, 135, 150, 169, 192]
     Accuracy (±5 and ordered): 0/20
 
-so it can't generalize, but also 60% accuracy on 4 wide shows that it does work in theory, it's not randomly guessing but also it can't fine tune. it can not get the exact number right because tanh applied over 100 steps looses a lot of accuracy
+so it can't generalize, but also 60% accuracy on 4 wide shows that it does work in theory, it's not randomly guessing but also it can't fine tune. it can not get the exact number right because tanh applied over 100 steps loses a lot of accuracy
 
 Ok so I did a lot more random experiments, I didn't exactly record the exact failures but here is the summary 
  - gated residuals - they preserve values a lot better than tanh
- - They diverge at about 400k itterations
+ - They diverge at about 400k iterations
  - Adam doesn't really help prevent the diverge
  - Adam with weight decay does work a lot better as weights can't really diverge 
  - That worked somehow
