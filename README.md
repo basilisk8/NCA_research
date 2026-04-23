@@ -21,6 +21,7 @@ Each folder = one experiment/direction.
 | `multi_shape_morphogenesis/5_shapes/` | Train a single NCA to grow 5 different binary shapes from learned seed embeddings; compares Mordvintsev architecture to stacked conv architecture | Works, stacked conv is perfect |
 | `multi_shape_morphogenesis/5_emoji/` | Train a single NCA to grow 5 different RGB emojis from learned seed embeddings; tests if same architecture can handle increased complexity of natural color images | Works, but not perfectly |
 | `multi_shape_morphogenesis/25_emoji_5_classes/` | Train a NCA to grow 25 emoji from 5 classes and 5 variants per class; tests if NCA can learn to grow many complex shapes with minimal parameters | Works |
+| `tik-tac-toe/` | Train an NCA to play tic tac toe against a minimax opponent; tests if NCA can learn the game mechanics and achieve a strong win/draw/loss rate against minimax | Works, 100% draw rate against minimax |
 ## Quick start
 ### Binary addition
 ```bash
@@ -117,6 +118,13 @@ python train_stacked_conv.py
 python test_stacked_conv.py
 ```
 
+#### Tik Tac Toe
+```bash
+cd tik-tac-toe
+python train_nca.py
+python nca_vs_minimax.py
+```
+
 ## Files in each folder
 ### Binary_addition
 - `memorization_addition_nca.py` - code to test if nca can 'remember'
@@ -197,6 +205,11 @@ python test_stacked_conv.py
 - `train_25_emoji.py` - Training script for stacked conv architecture adapted for 25 RGB emoji generation
 - `test_25_emoji.py` - Tests the trained stacked conv weights on all 25 emojis, reports MSE loss and pixel accuracy, and generates comparison visualization
 - `emoji_targets.pt` - Target RGB emoji images used for training
+
+### tik-tac-toe
+- `Documentation.md` - Experiment overview, architecture details, training details, results, and key findings on training an NCA to play tic tac toe against a minimax opponent, achieving a 100% draw rate and learning optimal defensive play
+- `train_nca.py` - Training script for the tic tac toe NCA, where the NCA learns by playing against a minimax opponent
+- `nca_vs_minimax.py` - Testing script where the trained NCA plays 10 games against minimax (9 games with minimax first, 1 game with NCA first) and reports win/draw/loss rates for the NCA
 
 ## Key findings
 
