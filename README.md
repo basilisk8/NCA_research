@@ -22,6 +22,8 @@ Each folder = one experiment/direction.
 | `multi_shape_morphogenesis/5_emoji/` | Train a single NCA to grow 5 different RGB emojis from learned seed embeddings; tests if same architecture can handle increased complexity of natural color images | Works, but not perfectly |
 | `multi_shape_morphogenesis/25_emoji_5_classes/` | Train a NCA to grow 25 emoji from 5 classes and 5 variants per class; tests if NCA can learn to grow many complex shapes with minimal parameters | Works |
 | `tik-tac-toe/` | Train an NCA to play tic tac toe against a minimax opponent; tests if NCA can learn the game mechanics and achieve a strong win/draw/loss rate against minimax | Works, 100% draw rate against minimax |
+| `language/` | Train an NCA to learn the structure of english words based on local interactions | Works, 76% accuracy on next letter prediction |
+
 ## Quick start
 ### Binary addition
 ```bash
@@ -125,6 +127,12 @@ python train_nca.py
 python nca_vs_minimax.py
 ```
 
+#### Language
+```bash
+cd language
+python 7_letter_word_train.py
+python test_generation.py
+```
 ## Files in each folder
 ### Binary_addition
 - `memorization_addition_nca.py` - code to test if nca can 'remember'
@@ -211,6 +219,10 @@ python nca_vs_minimax.py
 - `train_nca.py` - Training script for the tic tac toe NCA, where the NCA learns by playing against a minimax opponent
 - `nca_vs_minimax.py` - Testing script where the trained NCA plays 10 games against minimax (9 games with minimax first, 1 game with NCA first) and reports win/draw/loss rates for the NCA
 
+### language
+- `Documentation.md` - Experiment overview, architecture details, training details, results, and key findings on training an NCA to learn the structure of English words based on local interactions, achieving 76% accuracy on next letter prediction and demonstrating that global attention is not a requirement for language modeling
+- `7_letter_word_train.py` - Training script for the language NCA, where the NCA learns to predict the next letter in English words based on local interactions, trained on a dataset of 2-7 letter words
+- `test_generation.py` - Testing script that evaluates the word generative capability of the trained NCA by systematically loading every word and testing every possible index combination, tracking the total inputs and the number of generated words that exist in the dataset or English dictionary
 ## Key findings
 
 - Binary addition generalizes (train 0-5, test 0-7 → 84%)
@@ -229,3 +241,4 @@ python nca_vs_minimax.py
 - Activation function matters depending on the task 
 - NCA does better with minimal parameters in physics simulations
 - NCA learns discrete nonlinear rules (Game of Life) with perfect generalization across space and time, despite cascading error sensitivity
+- NCA can learn structure of English words with purely local interactions, achieving 76% accuracy on next letter prediction, demonstrating that global attention is not a requirement for language modeling
