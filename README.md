@@ -6,23 +6,23 @@ Exploring Neural Cellular Automata for computation.
 
 Each folder = one experiment/direction.
 
-| Folder | What | Status |
-|--------|------|--------|
-| `Binary_addition/` | NCA learns to add binary numbers | Works |
-| `generalization_limits/` | NCA learns to generalize to add numbers 100 - 999 when trained on data from 0 - 99 | Works |
-| `hebbian_learning_nca/` | NCA trained on Hebbian Learning | Failed | 
-| `time_grid_scaling/` | Testing training time when grid size increases | Same training time |
-| `computational_NCA/logic_gates` | NCA learns logic gates then generalizes to 16x training data | Trained and 100% accuracy on unseen data |
-| `computational_NCA/heat_diffusion` | Train an NCA to figure out heat diffusion rules when only given input and target | Works and generalizes |
-| `computational_NCA/heat_diffusion_generalize_limits` | Train an NCA on 1 forward pass and test generalization across time and space | Generalized | 
-| `sorting` | NCA learns to sort arrays via value routing and ranking | 60% routing, 95% ranking, 0% generalization , 100% gated routing 85% gated routing generalization|
-| `light_simulation/` | NCA learns Maxwell's equations (electromagnetic wave propagation); rediscovers FDTD stencils and generalizes across time & space | Works |
-| `game_of_life/` | NCA learns Game of Life rules; tests perfect generalization across space and time | Works |
-| `multi_shape_morphogenesis/5_shapes/` | Train a single NCA to grow 5 different binary shapes from learned seed embeddings; compares Mordvintsev architecture to stacked conv architecture | Works, stacked conv is perfect |
-| `multi_shape_morphogenesis/5_emoji/` | Train a single NCA to grow 5 different RGB emojis from learned seed embeddings; tests if same architecture can handle increased complexity of natural color images | Works, but not perfectly |
-| `multi_shape_morphogenesis/25_emoji_5_classes/` | Train a NCA to grow 25 emoji from 5 classes and 5 variants per class; tests if NCA can learn to grow many complex shapes with minimal parameters | Works |
-| `tik-tac-toe/` | Train an NCA to play tic tac toe against a minimax opponent; tests if NCA can learn the game mechanics and achieve a strong win/draw/loss rate against minimax | Works, 100% draw rate against minimax |
-| `language/` | Train an NCA to learn the structure of english words based on local interactions | Works, 76% accuracy on next letter prediction |
+| Folder | What                                                                                                                                                              | Status                                                                                            |
+|--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
+| `Binary_addition/` | NCA learns to add binary numbers                                                                                                                                  | Works                                                                                             |
+| `generalization_limits/` | NCA learns to generalize to add numbers 100 - 999 when trained on data from 0 - 99                                                                                | Works                                                                                             |
+| `hebbian_learning_nca/` | NCA trained on Hebbian Learning                                                                                                                                   | Failed                                                                                            | 
+| `time_grid_scaling/` | Testing training time when grid size increases                                                                                                                    | Same training time                                                                                |
+| `computational_NCA/logic_gates` | NCA learns logic gates then generalizes to 16x training data                                                                                                      | Trained and 100% accuracy on unseen data                                                          |
+| `computational_NCA/heat_diffusion` | Train an NCA to figure out heat diffusion rules when only given input and target                                                                                  | Works and generalizes                                                                             |
+| `computational_NCA/heat_diffusion_generalize_limits` | Train an NCA on 1 forward pass and test generalization across time and space                                                                                      | Generalized                                                                                       | 
+| `sorting` | NCA learns to sort arrays via value routing and ranking                                                                                                           | 60% routing, 95% ranking, 0% generalization , 100% gated routing 85% gated routing generalization |
+| `light_simulation/` | NCA learns Maxwell's equations (electromagnetic wave propagation); estimates the ftdt stencil and breaks down in OOD | Works partially|
+| `game_of_life/` | NCA learns Game of Life rules; tests perfect generalization across space and time                                                                                 | Works                                                                                             |
+| `multi_shape_morphogenesis/5_shapes/` | Train a single NCA to grow 5 different binary shapes from learned seed embeddings; compares Mordvintsev architecture to stacked conv architecture                 | Works, stacked conv is perfect                                                                    |
+| `multi_shape_morphogenesis/5_emoji/` | Train a single NCA to grow 5 different RGB emojis from learned seed embeddings; tests if same architecture can handle increased complexity of natural color images | Works, but not perfectly                                                                          |
+| `multi_shape_morphogenesis/25_emoji_5_classes/` | Train a NCA to grow 25 emoji from 5 classes and 5 variants per class; tests if NCA can learn to grow many complex shapes with minimal parameters                  | Works                                                                                             |
+| `tik-tac-toe/` | Train an NCA to play tic tac toe against a minimax opponent; tests if NCA can learn the game mechanics and achieve a strong win/draw/loss rate against minimax    | Works, 100% draw rate against minimax                                                             |
+| `language/` | Train an NCA to learn the structure of english words based on local interactions                                                                                  | Works, 76% accuracy on next letter prediction                                                     |
 
 ## Quick start
 ### Binary addition

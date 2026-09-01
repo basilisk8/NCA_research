@@ -55,8 +55,7 @@ This experiment explores whether an NCA can learn Maxwell's equations (electroma
 - Final error at t=200: 0.000051
 - Max error over 200 steps: 0.000674
 
-**Conclusion**: ✓ The NCA **learned Maxwell's time evolution**, not just memorized single-step patterns. Wave propagation remains stable and accurate over 40× longer timescales than training data.
-
+**Conclusion**: ✓ The NCA **learned Maxwell's time evolution**, but hasn't truely recovered the exact stencil, and the error grows slowly over time. The NCA generalizes well to longer time horizons, but small numerical errors accumulate.
 ### Experiment 2: Generalization Across Space
 **Setup**: Train on 16-32 grid sizes, test on 128×128 (16× larger)
 
@@ -64,34 +63,12 @@ This experiment explores whether an NCA can learn Maxwell's equations (electroma
 - Final error at 128×128: 0.000032
 - Max error over 50 steps: 0.000042
 
-**Conclusion**: ✓ The NCA **learned local wave physics** that composes correctly at arbitrary scales. Larger grids show equal or better accuracy, proving the NCA discovered genuine locality.
-
-### Experiment 3: Weight Analysis (Did It Learn Maxwell's?)
-**Setup**: Extract learned convolution kernels and analyze structure
-
-**Results**:
-- Ez ← Hx kernel: Y-derivative operator (top=+0.47, bottom≈0)
-- Ez ← Hy kernel: X-derivative operator (left=-0.49, right=+0.02)
-- Hx ← Ez kernel: Perfect Y-derivative `[0, 0.5, 0; 0, 0, 0; 0, -0.5, 0]`
-- Hy ← Ez kernel: Perfect X-derivative `[0, 0, 0; 0, -0.5, 0.5; 0, 0, 0]`
-- All kernels sum to ≈0 (derivative operators)
-- Coefficients match Courant number c=0.5
-
-**Conclusion**: ✓ The NCA **rediscovered Maxwell's FDTD stencils** from data alone. It did not find a computational shortcut, it learned the exact finite-difference operators used in traditional electromagnetic solvers.
+**Conclusion**: ✓ The NCA **failed to learn local wave physics** as the NCA doesn't know law of energy preservation, and 
 
 ## Key Findings
 
-1. **NCA learns actual physics laws**: The learned weights are interpretable finite-difference operators, not black-box approximations.
+1. **NCA learns actual physics laws**: The learned weights are black-box approximations.
 
-2. **Extreme generalization**: 40× time, 16× space beyond training data with <0.0001 error.
+2. **Minimal parameters**: 81 weights (324 bytes) encode full 2D Maxwell solver extimator.
 
-3. **Minimal parameters**: 81 weights (324 bytes) encode full 2D Maxwell solver.
-
-4. **Training efficiency**: 10 minutes to learn electromagnetic wave physics from scratch.
-
-## Implications
-
-- **Ultra-low-parameter physics simulators**: Traditional FDTD solvers require complex code; NCA requires 81 numbers.
-- **Generalization proof**: Physics-informed NCA generalizes far beyond training distribution when physics is truly local.
-- **Learned vs hand-coded**: NCA discovers same numerical methods (FDTD) that took humans decades to develop.
-- **Boundary condition specificity**: Material properties must be explicitly provided (via additional input channels) for NCA to handle arbitrary media.
+3. **Training efficiency**: 10 minutes to learn electromagnetic wave physics from scratch.
