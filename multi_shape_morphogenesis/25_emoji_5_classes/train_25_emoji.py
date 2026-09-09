@@ -41,9 +41,13 @@ def step(grid):
     new_grid[:, 0:128] = grid[:, 0:128] + update * 0.1
     return new_grid
 
+
 def lossFunc(finalGrid, target):
-    output = finalGrid[0, 0:3, :, :]
-    loss = nn.MSELoss()(output, target)
+    # Slice 0:4 to grab RGB + Alpha
+    output = finalGrid[0, 0:4, :, :]
+
+    # Switch to L1Loss to prevent the network from blurring edges
+    loss = nn.L1Loss()(output, target)
     return loss
 
 def trainingLoop(log, class_idx, variant_idx, iteration):
